@@ -693,6 +693,50 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: 'smartrack',
+    title: 'SMARTRACK — Data Center Management Platform',
+    description:
+      'Full-stack DCIM platform for data center operators. Connects sensors, PDUs, UPS, servers, cooling, and access control into a single smart ecosystem with real-time MQTT/WebSocket monitoring, multi-protocol IoT (Modbus, SNMP), AI-powered analytics, drag-and-drop automation, energy tracking (PUE, carbon), and enterprise security (RBAC, AES-256, audit trail).',
+    tags: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'MQTT', 'Modbus', 'SNMP', 'WebSocket', 'Docker', 'RBAC', 'AI Analytics', 'Tailwind'],
+    github: 'https://github.com/deenqtt/smartrack-software',
+    demo: 'https://smartrack-software.vercel.app/',
+    status: 'completed',
+    category: 'other',
+    year: 2025,
+    process: [
+      {
+        phase: 'Architecture & Data Model',
+        description:
+          'Designed multi-tenant schema with Prisma covering devices, sensors, alerts, access events, and energy records. Set up Next.js App Router with Docker-compose for local dev and production parity.',
+        duration: '1 week',
+      },
+      {
+        phase: 'IoT Protocol Integration',
+        description:
+          'Built real-time data ingestion pipeline supporting MQTT broker subscriptions, Modbus RTU/TCP polling, and SNMP v1/v2c/v3 queries. Normalized all protocol data into a unified device telemetry schema.',
+        duration: '2 weeks',
+      },
+      {
+        phase: 'AI Analytics & Automation Engine',
+        description:
+          'Implemented anomaly detection for sensor streams, cost and carbon emission prediction models, and a drag-and-drop rule chain editor for visual automation (condition → action triggers).',
+        duration: '2 weeks',
+      },
+      {
+        phase: 'Energy & Physical Security',
+        description:
+          'Built PUE dashboard with real-time power consumption, cost tracking, and carbon emission reporting. Integrated card-based access control, door lock management, and multi-level alarm system.',
+        duration: '1 week',
+      },
+      {
+        phase: 'Enterprise Security & Deployment',
+        description:
+          'Implemented RBAC with role-scoped permissions, AES-256 config encryption, and full audit trail logging. Deployed via Docker to Vercel with environment-based config management.',
+        duration: '1 week',
+      },
+    ],
+  },
+  {
     id: 'portfolio-v1',
     title: 'Personal Portfolio v1',
     description:
