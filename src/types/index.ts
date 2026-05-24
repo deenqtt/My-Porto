@@ -84,3 +84,14 @@ export interface GuestbookMessage {
   message: string;
   created_at: string;
 }
+
+export interface Note {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
+  category: string;
+  date: string;
+  tags: string[];
+  content: string; // Markdown or plain text
+}

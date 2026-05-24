@@ -17,24 +17,34 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Deden Hidayat — IoT & Fullstack Developer',
+    default: 'Deden Hidayat — Full-Stack Systems Engineer',
     template: '%s | Deden Hidayat',
   },
   description:
-    'Portfolio of Deden Hidayat — IoT & Fullstack Developer from Indonesia. Building end-to-end systems from ESP32 firmware to cloud dashboards.',
-  keywords: ['IoT', 'Fullstack', 'ESP32', 'Next.js', 'TypeScript', 'Indonesia', 'Developer'],
+    'Full-Stack Systems Engineer specializing in real-time telemetry, IoT architecture, and high-performance web applications. Bridging the gap between hardware and cloud.',
+  keywords: [
+    'Full-Stack Engineer',
+    'Systems Architect',
+    'IoT Telemetry',
+    'Real-time Systems',
+    'Next.js',
+    'TypeScript',
+    'Industrial IoT',
+    'MQTT',
+    'Protocol Bridging',
+  ],
   authors: [{ name: 'Deden Hidayat', url: 'https://github.com/deenqtt' }],
   openGraph: {
     type: 'website',
-    locale: 'id_ID',
-    title: 'Deden Hidayat — IoT & Fullstack Developer',
-    description: 'Building end-to-end IoT systems from firmware to cloud dashboards.',
+    locale: 'en_US',
+    title: 'Deden Hidayat — Full-Stack Systems Engineer',
+    description: 'Engineering data-driven systems from low-level telemetry to modern SaaS dashboards.',
     siteName: 'Deden Hidayat Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Deden Hidayat — IoT & Fullstack Developer',
-    description: 'Building end-to-end IoT systems from firmware to cloud dashboards.',
+    title: 'Deden Hidayat — Full-Stack Systems Engineer',
+    description: 'Engineering data-driven systems from low-level telemetry to modern SaaS dashboards.',
   },
   robots: {
     index: true,
@@ -44,8 +54,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className="dark">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="en" className="dark">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased relative overflow-x-hidden`}>
+        <div className="scanline pointer-events-none fixed inset-0 z-50" />
         <Navbar />
         <main>{children}</main>
         <Footer />

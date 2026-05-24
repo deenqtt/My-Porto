@@ -2,6 +2,87 @@ import { Project } from '@/types';
 
 export const projects: Project[] = [
   {
+    id: 'telemetry-bridge',
+    title: 'Industrial Telemetry & Protocol Bridge',
+    description:
+      'A complex real-time telemetry system that polls data from various industrial devices and protocols, publishing it to an MQTT broker for monitoring and integration. Supports reverse data flow for bidirectional communication.',
+    tags: ['MQTT', 'SNMP', 'Modbus', 'Python', 'Raspberry Pi', 'ESP32', 'Industrial'],
+    github: 'https://github.com/deenqtt',
+    status: 'completed',
+    category: 'protocol-in',
+    year: 2024,
+    process: [
+      {
+        phase: 'Interoperability Design',
+        description:
+          'Engineered a bridging layer to handle diverse industrial protocols (Modbus, SNMP) ensuring seamless data translation and consistency.',
+        duration: '2 weeks',
+      },
+      {
+        phase: 'Real-time Pipeline',
+        description:
+          'Built a high-reliability telemetry pipeline for real-time polling and MQTT publishing, optimized for low-latency monitoring.',
+        duration: '3 weeks',
+      },
+      {
+        phase: 'Reverse Flow Implementation',
+        description:
+          'Implemented bidirectional communication, allowing the system to convert MQTT commands back into device-specific protocols.',
+        duration: '1 week',
+      },
+    ],
+  },
+  {
+    id: 'dynamic-dashboard',
+    title: 'Dynamic Real-time Monitoring Platform',
+    description:
+      'A configurable, modern engineering dashboard platform that allows users to customize layouts, widgets, and data visualizations for real-time telemetry display.',
+    tags: ['Next.js', 'React', 'TypeScript', 'MQTT', 'WebSockets', 'Data Viz'],
+    github: 'https://github.com/deenqtt',
+    status: 'completed',
+    category: 'other',
+    year: 2024,
+    process: [
+      {
+        phase: 'Core Engine Development',
+        description:
+          'Built a dynamic UI system capable of rendering configurable widgets and real-time data streams without page reloads.',
+        duration: '3 weeks',
+      },
+      {
+        phase: 'Integration & Telemetry',
+        description:
+          'Integrated MQTT and API streams into a unified data bus for consistent real-time updates across the dashboard.',
+        duration: '2 weeks',
+      },
+    ],
+  },
+  {
+    id: 'ai-meeting-assistant',
+    title: 'AI Meeting Assistant (STT/TTS)',
+    description:
+      'An AI-powered meeting system featuring real-time speech-to-text, automated summary generation, and smart room automation via voice control.',
+    tags: ['Python', 'AI', 'Speech-to-Text', 'NLP', 'Automation', 'IoT'],
+    github: 'https://github.com/deenqtt',
+    status: 'completed',
+    category: 'other',
+    year: 2025,
+    process: [
+      {
+        phase: 'Speech Processing Pipeline',
+        description:
+          'Implemented real-time STT and integrated AI models for automated summary generation and email distribution.',
+        duration: '3 weeks',
+      },
+      {
+        phase: 'Voice Automation',
+        description:
+          'Developed custom wake-word detection and voice command systems for smart room orchestration and device control.',
+        duration: '2 weeks',
+      },
+    ],
+  },
+  {
     id: 'bacnet-poller',
     title: 'BACnet/IP Protocol Poller',
     description:

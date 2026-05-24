@@ -32,8 +32,14 @@ const config: Config = {
         "slide-up": "slideUp 0.5s ease-out",
         "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         blink: "blink 1s step-end infinite",
+        loading: "loading 1.5s ease-in-out infinite",
       },
       keyframes: {
+        loading: {
+          "0%": { transform: "translateX(-100%)" },
+          "50%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
         fadeIn: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },

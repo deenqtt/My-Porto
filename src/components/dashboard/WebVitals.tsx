@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Card from '@/components/ui/Card';
-import { Activity } from 'lucide-react';
+import { Activity, Zap } from 'lucide-react';
 
 interface Metric {
   name: string;
@@ -95,46 +95,62 @@ export default function WebVitals() {
 
   return (
     <Card>
-      <div className="flex items-center gap-2 mb-4">
-        <Activity size={16} className="text-cyan-400" />
-        <h3 className="text-sm font-mono text-gray-400 uppercase tracking-wider">
-          Web Vitals (live)
-        </h3>
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-2">
+          <Activity size={14} className="text-blue-400" />
+          <h3 className="text-[10px] font-mono text-gray-500 uppercase tracking-[0.2em]">
+            System Health
+          </h3>
+        </div>
+        <div className="flex items-center gap-1.5">
+           <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+           <span className="text-[10px] font-mono text-gray-600 uppercase">Live</span>
+        </div>
       </div>
 
       {metrics.length === 0 ? (
-        <p className="text-gray-500 text-sm text-center py-6">
-          Collecting metrics... browse the site
-        </p>
+        <div className="text-center py-10">
+          <Zap size={24} className="text-gray-800 mx-auto mb-3 animate-pulse" />
+          <p className="text-gray-600 text-[11px] font-mono uppercase tracking-tighter">
+            Waiting for data...
+          </p>
+        </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-6">
           {metrics.map((m) => {
-            const pct =
-              m.name === 'CLS'
-                ? Math.min((m.value / m.poorThreshold) * 100, 100)
-                : Math.min((m.value / m.poorThreshold) * 100, 100);
+            const pct = Math.min((m.value / m.poorThreshold) * 100, 100);
 
             return (
               <div key={m.name}>
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-sm font-mono text-gray-300">{m.name}</span>
-                  <span className={`text-sm font-bold font-mono ${ratingColor[m.rating]}`}>
-                    {m.value}
-                    {m.unit}
-                  </span>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex flex-col">
+                    <span className="text-xs font-mono text-gray-300">{m.name}</span>
+                    <span className="text-[9px] font-mono text-gray-600 uppercase mt-0.5">{m.rating.replace('-', ' ')}</span>
+                  </div>
+                  <div className="text-right">
+                    <span className={`text-sm font-bold font-mono ${ratingColor[m.rating]}`}>
+                      {m.value}
+                    </span>
+                    <span className="text-[10px] text-gray-600 font-mono ml-1">{m.unit}</span>
+                  </div>
                 </div>
-                <div className="h-1.5 bg-[#1f2937] rounded-full overflow-hidden">
+                <div className="h-1 bg-[#1f2937] rounded-full overflow-hidden">
                   <div
-                    className={`h-full rounded-full ${ratingBg[m.rating]} transition-all duration-500`}
-                    style={{ width: `${Math.max(pct, 3)}%` }}
+                    className={`h-full rounded-full ${ratingBg[m.rating]} opacity-40 transition-all duration-700 ease-out`}
+                    style={{ width: `${Math.max(pct, 5)}%` }}
                   />
                 </div>
-                <div className="text-xs text-gray-600 mt-1 capitalize">{m.rating.replace('-', ' ')}</div>
               </div>
             );
           })}
         </div>
       )}
+      
+      <div className="mt-8 pt-6 border-t border-white/[0.03]">
+        <p className="text-[9px] text-gray-700 font-mono leading-relaxed">
+          METRICS COLLECTED VIA WEB-VITALS API. DATA PERSISTED FOR PERFORMANCE AUDITING.
+        </p>
+      </div>
     </Card>
   );
 }
