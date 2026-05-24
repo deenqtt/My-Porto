@@ -1,6 +1,6 @@
 import { notes } from '@/data/notes';
 import Link from 'next/link';
-import { Book, Clock, ChevronRight, Hash } from 'lucide-react';
+import { Book, Clock, ChevronRight } from 'lucide-react';
 
 export default function NotesPage() {
   return (

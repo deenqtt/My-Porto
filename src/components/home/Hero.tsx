@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Github, ArrowRight, Cpu, Network, Database, Terminal } from 'lucide-react';
+import { ArrowRight, Cpu, Network, Database, Terminal } from 'lucide-react';
 import TypewriterText from '@/components/ui/TypewriterText';
 import { motion } from 'framer-motion';
 

@@ -5,7 +5,7 @@ import GitHubStats from '@/components/dashboard/GitHubStats';
 import WakaTimeStats from '@/components/dashboard/WakaTimeStats';
 import ContribGraph from '@/components/dashboard/ContribGraph';
 import WebVitals from '@/components/dashboard/WebVitals';
-import { Activity, LayoutDashboard, Terminal, ShieldCheck } from 'lucide-react';
+import { Activity, Terminal, ShieldCheck } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Engineering Telemetry',

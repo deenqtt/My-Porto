@@ -4,7 +4,7 @@ import Hero from '@/components/home/Hero';
 import QuickStats from '@/components/home/QuickStats';
 import { fetchGitHubStats } from '@/lib/github';
 import Link from 'next/link';
-import { ArrowRight, LayoutDashboard, Briefcase, MessageSquare, Cpu, Network, Database, Terminal } from 'lucide-react';
+import { ArrowRight, LayoutDashboard, Cpu, Network, Database, Terminal } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { GitHubStats } from '@/types';

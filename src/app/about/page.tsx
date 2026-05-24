@@ -1,6 +1,6 @@
 'use client';
 
-import { Linkedin, Github, Mail, MapPin, Briefcase, Award, Milestone, Cpu, ShieldCheck } from 'lucide-react';
+import { Linkedin, Github, MapPin, Briefcase, Award, Milestone, Cpu, ShieldCheck } from 'lucide-react';
 import { certificates } from '@/data/certs';
 import { achievements } from '@/data/achievements';
 import { motion } from 'framer-motion';

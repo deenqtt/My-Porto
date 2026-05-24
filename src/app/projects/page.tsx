@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react';
 import { projects } from '@/data/projects';
 import ProjectCard from '@/components/projects/ProjectCard';
 import FeaturedCaseStudy from '@/components/projects/FeaturedCaseStudy';
-import { LayoutGrid, List, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 const tabs = [
   { key: 'all',          label: 'All Systems',          desc: 'Full directory' },
