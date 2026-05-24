@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import { ArrowRight, Cpu, Network, Database, Terminal } from 'lucide-react';
 import TypewriterText from '@/components/ui/TypewriterText';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
-const container = {
+const container: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -16,7 +16,7 @@ const container = {
   },
 };
 
-const item = {
+const item: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 };
