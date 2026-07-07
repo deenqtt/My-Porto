@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Deden Hidayat Resume</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 13mm 14mm;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: #111;
+        background: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 10.4px;
+        line-height: 1.35;
+      }
+
+      h1,
+      h2,
+      h3,
+      p,
+      ul {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 24px;
+        letter-spacing: 0.09em;
+        text-align: center;
+      }
+
+      .subtitle {
+        margin-top: 4px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .contact {
+        margin-top: 7px;
+        color: #333;
+        text-align: center;
+      }
+
+      .contact span {
+        display: inline-block;
+        margin: 0 4px;
+      }
+
+      section {
+        margin-top: 12px;
+      }
+
+      h2 {
+        border-bottom: 1px solid #111;
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        padding-bottom: 3px;
+        text-transform: uppercase;
+      }
+
+      .summary {
+        margin-top: 6px;
+      }
+
+      .skills {
+        display: grid;
+        grid-template-columns: 25mm 1fr;
+        column-gap: 7px;
+        row-gap: 4px;
+        margin-top: 7px;
+      }
+
+      .skill-label {
+        font-weight: 700;
+      }
+
+      .item {
+        margin-top: 8px;
+        break-inside: avoid;
+      }
+
+      .item-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .role,
+      .project-title,
+      .school {
+        font-weight: 700;
+      }
+
+      .company,
+      .project-type {
+        color: #333;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .date {
+        color: #333;
+        flex: 0 0 auto;
+        font-weight: 700;
+      }
+
+      ul {
+        margin-top: 4px;
+        padding-left: 13px;
+      }
+
+      li {
+        margin-top: 2px;
+      }
+
+      .project-copy {
+        margin-top: 3px;
+      }
+
+      .tech {
+        color: #333;
+        font-size: 10px;
+        margin-top: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>DEDEN HIDAYAT</h1>
+      <p class="subtitle">Software Engineer - Full-Stack, IoT, Industrial Systems</p>
+      <p class="contact">
+        Jakarta Barat, Indonesia
+        <span>|</span>
+        +62 856-4159-2290
+        <span>|</span>
+        dedenh842@gmail.com
+        <span>|</span>
+        github.com/deenqtt
+        <span>|</span>
+        linkedin.com/in/deden-hidayat
+      </p>
+    </header>
+
+    <section>
+      <h2>Summary</h2>
+      <p class="summary">
+        Software Engineer bridging industrial hardware and cloud software. Hands-on across embedded
+        firmware, 10+ industrial protocols (Modbus, BACnet, SNMP, OPC-UA, MQTT), Python middleware,
+        and Next.js/TypeScript dashboards. Currently in R&amp;D at PT GSPE, building protocol middleware
+        and real-time monitoring platforms, including SMARTRACK, a full-stack data-center management
+        system with live IoT telemetry.
+      </p>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="skill-label">Languages</div>
+        <div>TypeScript, JavaScript, Python, C / C++, Dart</div>
+        <div class="skill-label">Frontend</div>
+        <div>Next.js, React, Vue 3, Tailwind CSS, Framer Motion</div>
+        <div class="skill-label">Backend</div>
+        <div>Node.js, Flask, Prisma, PostgreSQL, Supabase, REST &amp; WebSocket APIs</div>
+        <div class="skill-label">IoT / Protocols</div>
+        <div>MQTT, Modbus RTU/TCP, BACnet/IP, SNMP, OPC-UA, EtherNet/IP, IEC 61850, Sparkplug B</div>
+        <div class="skill-label">Embedded</div>
+        <div>ESP32, Raspberry Pi, ESP-IDF, Arduino</div>
+        <div class="skill-label">Tools / Infra</div>
+        <div>Docker, Git, Linux, ROS2, Vercel</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <div class="item">
+        <div class="item-head">
+          <div>
+            <span class="role">R&amp;D Engineer</span>
+            <span class="company">PT Graha Sumber Prima Elektronik (GSPE)</span>
+          </div>
+          <div class="date">2023 - Present</div>
+        </div>
+        <ul>
+          <li>Architect middleware for 10+ industrial protocols, bridging bare-metal firmware to cloud telemetry.</li>
+          <li>Built real-time telemetry pipelines publishing device data to MQTT with bidirectional reverse-flow control.</li>
+          <li>Developed SMARTRACK, a full-stack data-center management platform with live monitoring, AI analytics, and RBAC security.</li>
+          <li>Delivered AI vision and STT/TTS systems for production monitoring and automated reporting.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <div>
+            <span class="role">Freelance Engineer</span>
+            <span class="company">Independent</span>
+          </div>
+          <div class="date">2023 - Present</div>
+        </div>
+        <ul>
+          <li>Built IoT and web projects for clients, including real-time dashboards, protocol bridges, and mobile control apps.</li>
+          <li>Delivered end-to-end systems across firmware, middleware, APIs, and frontend interfaces.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Selected Projects</h2>
+      <div class="item">
+        <div class="project-title">SMARTRACK - Data-Center Management Platform</div>
+        <div class="project-type">Full-Stack / DCIM</div>
+        <p class="project-copy">
+          Full-stack DCIM platform with real-time MQTT/WebSocket monitoring, multi-protocol IoT ingest
+          (Modbus, SNMP), AI analytics, drag-and-drop automation, RBAC, AES-256 security, PUE tracking,
+          and carbon tracking.
+        </p>
+        <p class="tech">Next.js, TypeScript, Prisma, PostgreSQL, MQTT, Docker</p>
+      </div>
+
+      <div class="item">
+        <div class="project-title">Industrial Telemetry &amp; Protocol Bridge</div>
+        <div class="project-type">Firmware / Middleware</div>
+        <p class="project-copy">
+          Real-time poller for industrial devices using Modbus and SNMP, publishing normalized telemetry
+          to MQTT with bidirectional reverse flow on Raspberry Pi and ESP32 nodes.
+        </p>
+        <p class="tech">Python, MQTT, Modbus, SNMP, Raspberry Pi, ESP32</p>
+      </div>
+
+      <div class="item">
+        <div class="project-title">AGV Simulation &amp; Web Control</div>
+        <div class="project-type">Robotics</div>
+        <p class="project-copy">
+          ROS2 and Gazebo autonomous guided vehicle with Vue 3 control UI, Nav2 navigation, SLAM mapping,
+          auto-docking, and keepout zones.
+        </p>
+        <p class="tech">ROS2, Gazebo, Nav2, SLAM, Vue 3, Docker</p>
+      </div>
+
+      <div class="item">
+        <div class="project-title">IoT BOM List v2</div>
+        <div class="project-type">Full-Stack / Infrastructure</div>
+        <p class="project-copy">
+          BOM and inventory platform for IoT hardware teams, covering component databases, PCB assemblies,
+          supplier pricing, Excel import/export, audit logs, backups, and Docker/nginx deployment.
+        </p>
+        <p class="tech">Next.js, TypeScript, Hono, Prisma, PostgreSQL, Docker, nginx</p>
+      </div>
+
+      <div class="item">
+        <div class="project-title">Production Machine Monitor (AI Vision)</div>
+        <div class="project-type">Deployed System</div>
+        <p class="project-copy">
+          Real-deployed monitor for CNC and laser machines using a C# screenshot agent and a Flask server
+          running Qwen2.5VL locally for automated daily production reports.
+        </p>
+        <p class="tech">Python, Flask, C#, Ollama, Qwen2.5VL</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="item">
+        <div class="item-head">
+          <div>
+            <span class="school">Teknik Elektronika Industri</span>
+            <span class="company">SMK Negeri Jawa Tengah</span>
+          </div>
+          <div class="date">2020 - 2023</div>
+        </div>
+        <ul>
+          <li>Industrial electronics foundations, including microcontrollers, electrical systems, and hardware-software integration.</li>
+        </ul>
+      </div>
+    </section>
+  </body>
+</html>
