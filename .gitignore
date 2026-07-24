@@ -51,3 +51,6 @@ public/CV-Ikhsal*.pdf
 
 # cv html source (regenerate resume.pdf via headless chrome print)
 cv-source.html
+
+# cover letters (per-application docs, local only)
+cover-letters/
