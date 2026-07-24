@@ -22,7 +22,7 @@ export interface Proj {
 export const layerColor: Record<string, string> = {
   'DCIM · Fullstack': '#bf5030',
   'Industrial Middleware': '#3d6b5a',
-  'Hardware · Firmware · Software': '#8b6914',
+  'Firmware · Full-Stack': '#8b6914',
   'AI · ML · MLOps': '#5a3d7a',
   'Fleet Infra · DevOps': '#2f5f6f',
   Robotics: '#3d2e28',
@@ -62,11 +62,11 @@ export const projects: Proj[] = [
     slug: 'lockaccesscontroller',
     n: '003',
     title: 'LockAccessController',
-    layer: 'Hardware · Firmware · Software',
-    impact: 'Built the whole chain myself — custom PCB → ESP32 firmware → software. One controller drives up to 10 locks over RS485/Modbus.',
+    layer: 'Firmware · Full-Stack',
+    impact: 'ESP32 access controller — firmware + software. One controller drives up to 10 locks over RS485/Modbus, reachable over three channels at once.',
     blurb:
       'Door access-control system. ESP32 Modbus master over RS485, dry-contact sensors, offline-safe logging (RTC + EEPROM). Reachable over three independent channels: embedded web UI, WebSocket, and MQTT.',
-    tech: ['ESP32', 'C++', 'Modbus RTU', 'RS485', 'MQTT', 'WebSocket', 'W5500', 'PCB Design'],
+    tech: ['ESP32', 'C++', 'ESP-IDF', 'Modbus RTU', 'RS485', 'MQTT', 'WebSocket', 'W5500'],
     status: 'private',
     hard: 'One ESP32 acting as Modbus master to 10 locks while serving HTTP + WebSocket + MQTT in parallel, with offline-safe logging via RTC + EEPROM.',
     featured: true,

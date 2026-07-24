@@ -478,7 +478,7 @@ function Projects() {
 // ─── Stack ────────────────────────────────────────────────────────────────────
 
 const stackGroups = [
-  { label: 'embedded', items: ['C / C++', 'ESP32', 'Raspberry Pi', 'Arduino', 'PCB Design', 'Panel Wiring'] },
+  { label: 'embedded', items: ['C / C++', 'ESP32', 'Raspberry Pi', 'NanoPi', 'ESP-IDF', 'Arduino', 'RS485'] },
   {
     label: 'protocols',
     items: ['Modbus RTU/TCP', 'BACnet/IP', 'SNMP', 'EtherNet/IP', 'OPC-UA', 'MQTT', 'IEC 61850', 'Sparkplug B'],
@@ -521,7 +521,7 @@ const exps = [
     period: '2024 — now',
     role: 'R&D Engineer',
     co: 'PT GSPE',
-    note: 'Built a protocol gateway serving 11 industrial protocols from one source, shipped a fleet OTA control plane with staged rollout + auto-rollback, and designed access-control hardware end to end (PCB → firmware → software). Delivered the SMARTRACK DCIM control center, plus AI/ML systems for production monitoring and predictive maintenance.',
+    note: 'Built a protocol gateway serving 11 industrial protocols from one source, shipped a fleet OTA control plane with staged rollout + auto-rollback, and built an ESP32 access controller (firmware → software) driving locks over RS485/Modbus. Delivered the SMARTRACK DCIM control center, plus AI/ML systems for production monitoring and predictive maintenance.',
     tags: ['Python', 'C/C++', 'MQTT', 'Modbus', 'Next.js', 'AI/ML'],
   },
   {
