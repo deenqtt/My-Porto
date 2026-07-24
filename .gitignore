@@ -48,3 +48,6 @@ CV-DRAFT.md
 
 # other people's CVs — never publish (privacy)
 public/CV-Ikhsal*.pdf
+
+# cv html source (regenerate resume.pdf via headless chrome print)
+cv-source.html
