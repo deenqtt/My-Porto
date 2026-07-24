@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { AlertTriangle, RefreshCcw, Home } from 'lucide-react';
+import { RefreshCcw, Home } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Error({
@@ -16,41 +16,35 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-md p-8 bg-[#161616] border border-red-500/20 rounded-2xl relative overflow-hidden">
-        {/* Error Glow */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-full blur-3xl" />
-        
-        <div className="relative z-10 flex flex-col items-center text-center">
-          <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 mb-6">
-            <AlertTriangle size={32} className="text-red-500" />
-          </div>
-          
-          <h2 className="text-2xl font-bold text-white mb-2 font-mono uppercase tracking-tight">
-            System Fault Detected
-          </h2>
-          <p className="text-gray-500 text-sm mb-8 font-mono">
-            An unexpected error occurred in the telemetry pipeline. 
-            Code: <span className="text-red-400">{error.digest || 'UNKNOWN_ERR'}</span>
-          </p>
-          
-          <div className="flex flex-wrap gap-4 justify-center">
-            <button
-              onClick={() => reset()}
-              className="flex items-center gap-2 px-6 py-2.5 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition-all"
-            >
-              <RefreshCcw size={18} />
-              Reboot System
-            </button>
-            <Link
-              href="/"
-              className="flex items-center gap-2 px-6 py-2.5 bg-[#1f2937] hover:bg-[#374151] text-gray-300 font-semibold rounded-lg transition-all"
-            >
-              <Home size={18} />
-              Return Home
-            </Link>
-          </div>
-        </div>
+    <div className="min-h-screen bg-[#f0ede6] text-[#1a1410] flex flex-col items-center justify-center px-4">
+      <div className="font-mono text-[11px] text-[#bf5030] tracking-widest uppercase mb-4">
+        system fault detected
+      </div>
+      <h2
+        className="font-[family-name:var(--font-rajdhani)] font-bold text-[clamp(2rem,8vw,4rem)] leading-none mb-4 text-center"
+        style={{ letterSpacing: '-0.02em' }}
+      >
+        SOMETHING BROKE
+      </h2>
+      <p className="font-mono text-[12px] text-[#7a6e64] leading-relaxed max-w-sm text-center mb-8">
+        Unexpected error in the pipeline. Code:{' '}
+        <span className="text-[#bf5030]">{error.digest || 'UNKNOWN_ERR'}</span>
+      </p>
+      <div className="flex flex-wrap gap-4 justify-center">
+        <button
+          onClick={() => reset()}
+          className="group flex items-center gap-2 font-mono text-[11px] tracking-widest uppercase text-[#1a1410] border border-[#bf5030]/40 bg-[#bf5030]/10 px-5 py-3 hover:border-[#bf5030] hover:text-[#bf5030] transition-all"
+        >
+          <RefreshCcw size={13} />
+          reboot system
+        </button>
+        <Link
+          href="/"
+          className="flex items-center gap-2 font-mono text-[11px] tracking-widest uppercase text-[#7a6e64] border border-[#1a1410]/20 px-5 py-3 hover:border-[#1a1410] hover:text-[#1a1410] transition-all"
+        >
+          <Home size={13} />
+          return home
+        </Link>
       </div>
     </div>
   );

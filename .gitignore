@@ -34,3 +34,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local docs / cv source clutter (public/resume.pdf is the served copy)
+CV_*.docx
+CV_*.pdf
+resume.html
+QUESTIONNAIRE.md
+
+# internal working docs — not part of the site
+PLAN.md
+PROJECTS.md
+CV-DRAFT.md
+
+# other people's CVs — never publish (privacy)
+public/CV-Ikhsal*.pdf

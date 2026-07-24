@@ -1,36 +1,30 @@
 import Link from 'next/link';
-import { Search, Home, ArrowRight } from 'lucide-react';
+import { Home, ArrowUpRight } from 'lucide-react';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-md p-8 bg-[#161616] border border-cyan-500/10 rounded-2xl relative overflow-hidden text-center">
-        {/* Decorative Grid */}
-        <div className="absolute inset-0 grid-bg opacity-10 pointer-events-none" />
-        
-        <div className="relative z-10 flex flex-col items-center">
-          <div className="p-4 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 mb-6">
-            <Search size={40} className="text-cyan-500" />
-          </div>
-          
-          <h2 className="text-3xl font-bold text-white mb-2 font-mono uppercase tracking-tighter">
-            404: Node Not Found
-          </h2>
-          <p className="text-gray-500 text-sm mb-8 font-mono leading-relaxed">
-            The requested address does not exist in the system directory. 
-            It might have been moved or initialized in a different segment.
-          </p>
-          
-          <Link
-            href="/"
-            className="group flex items-center gap-2 px-8 py-3 bg-white text-black font-semibold rounded-lg transition-all hover:bg-gray-200"
-          >
-            <Home size={18} />
-            Back to Base
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
+    <div className="min-h-screen bg-[#f0ede6] text-[#1a1410] flex flex-col items-center justify-center px-4">
+      <div className="font-mono text-[11px] text-[#bf5030] tracking-widest uppercase mb-4">
+        error 404
       </div>
+      <h2
+        className="font-[family-name:var(--font-rajdhani)] font-bold text-[clamp(2.5rem,10vw,5rem)] leading-none mb-4 text-center"
+        style={{ letterSpacing: '-0.02em' }}
+      >
+        NODE NOT FOUND
+      </h2>
+      <p className="font-mono text-[12px] text-[#7a6e64] leading-relaxed max-w-sm text-center mb-8">
+        Requested address not in system directory. May have moved or initialized in a different
+        segment.
+      </p>
+      <Link
+        href="/"
+        className="group flex items-center gap-2 font-mono text-[11px] tracking-widest uppercase text-[#1a1410] border border-[#1a1410]/20 px-5 py-3 hover:border-[#bf5030] hover:text-[#bf5030] transition-all"
+      >
+        <Home size={13} />
+        back to base
+        <ArrowUpRight size={11} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+      </Link>
     </div>
   );
 }

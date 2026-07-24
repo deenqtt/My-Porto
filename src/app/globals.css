@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,7 +25,7 @@
   body {
     background-color: #f0ede6;
     color: #1a1410;
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-outfit), sans-serif;
     min-height: 100vh;
   }
 
@@ -73,6 +71,6 @@
 @layer utilities {
   /* JetBrains Mono for all mono labels/tags */
   .font-mono {
-    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
   }
 }

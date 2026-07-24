@@ -1,23 +1,23 @@
 import { MetadataRoute } from 'next';
+import { projects } from '@/data/projects';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://my-porto-coral.vercel.app'; // Replace with actual domain if changed
 
-  const routes = [
-    '',
-    '/projects',
-    '/dashboard',
-    '/about',
-    '/contact',
-    '/guestbook',
-    '/achievements',
-    '/certs',
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1 : 0.8,
-  }));
+  const now = new Date();
 
-  return [...routes];
+  return [
+    {
+      url: baseUrl,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 1,
+    },
+    ...projects.map((p) => ({
+      url: `${baseUrl}/work/${p.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    })),
+  ];
 }

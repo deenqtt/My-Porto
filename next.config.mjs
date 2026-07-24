@@ -1,17 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'avatars.githubusercontent.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'opengraph.githubassets.com',
-      },
-    ],
-  },
   async headers() {
     return [
       {
@@ -30,9 +18,9 @@ const nextConfig = {
               "default-src 'self'",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
               "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: https://avatars.githubusercontent.com https://opengraph.githubassets.com",
+              "img-src 'self' data:",
               "font-src 'self'",
-              "connect-src 'self' https://*.supabase.co https://api.github.com https://wakatime.com",
+              "connect-src 'self'",
               "frame-ancestors 'none'",
             ].join('; '),
           },

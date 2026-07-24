@@ -1,7 +1,10 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Github, Mail, Linkedin, ArrowUpRight, Terminal, Download, Menu, X } from 'lucide-react';
+import Link from 'next/link';
+import { Github, Mail, Linkedin, ArrowUpRight, Terminal, Download, Menu, X, Send, Check, Loader2 } from 'lucide-react';
+import { projects, layerColor, type Proj } from '@/data/projects';
+import { StatusBadge } from '@/components/project-bits';
 
 // ─── Scramble text ────────────────────────────────────────────────────────────
 
@@ -229,12 +232,12 @@ function Nav() {
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
-// NOTE: stats below are real & defensible — adjust the numbers as your work grows.
+// NOTE: every stat is backed by what's shown on this page — safe to be counted.
 const heroStats: [string, string][] = [
-  ['28', 'projects shipped'],
-  ['10+', 'protocols spoken'],
-  ['2', 'live demos'],
-  ['6', 'certifications'],
+  ['11', 'protocols served'],
+  ['6', 'production systems'],
+  ['5', 'layers (hw → ml)'],
+  ['3+', 'live deployments'],
 ];
 
 const recruiterSnapshot: [string, string][] = [
@@ -257,14 +260,14 @@ function Hero() {
         <p className="font-mono text-[10px] sm:text-[11px] tracking-[0.18em] sm:tracking-[0.25em] text-[#bf5030] uppercase mb-4 max-w-[22rem] sm:max-w-none leading-relaxed">
           Software Engineer — IoT · Industrial Protocols · Fullstack
         </p>
-        <h1 className="font-['Rajdhani'] font-bold leading-[0.88] text-[#1a1410]" style={{ letterSpacing: '-0.02em' }}>
+        <h1 className="font-[family-name:var(--font-rajdhani)] font-bold leading-[0.88] text-[#1a1410]" style={{ letterSpacing: '-0.02em' }}>
           <span className="block text-[clamp(3rem,17vw,8rem)] sm:text-[clamp(3.5rem,12vw,8rem)]">DEDEN</span>
           <span className="block text-[clamp(3rem,17vw,8rem)] sm:text-[clamp(3.5rem,12vw,8rem)] text-[#bf5030]">HIDAYAT</span>
         </h1>
       </div>
 
       <div className="mt-6 sm:mt-8 max-w-[460px]">
-        <p className="font-['Outfit'] text-[#7a6e64] text-sm leading-[1.85]">
+        <p className="font-[family-name:var(--font-outfit)] text-[#7a6e64] text-sm leading-[1.85]">
           I build systems that bridge factory-floor hardware and the cloud. Polling industrial
           protocols, piping telemetry over MQTT, then surfacing it on Next.js control centers.
           Firmware → middleware → API → frontend. The whole chain.
@@ -312,7 +315,7 @@ function Hero() {
       <div className="mt-12 sm:mt-20 grid grid-cols-2 gap-x-6 gap-y-6 sm:flex sm:flex-wrap sm:items-end sm:gap-10">
         {heroStats.map(([num, label]) => (
           <div key={label}>
-            <div className="font-['Rajdhani'] font-bold text-2xl text-[#1a1410]">{num}</div>
+            <div className="font-[family-name:var(--font-rajdhani)] font-bold text-2xl text-[#1a1410]">{num}</div>
             <div className="font-mono text-[10px] text-[#7a6e64] tracking-widest mt-0.5">{label}</div>
           </div>
         ))}
@@ -344,13 +347,13 @@ function About() {
       <SectionLabel index="01" label="who" />
       <div className="grid md:grid-cols-[1fr_300px] gap-10 md:gap-16">
         <div>
-          <p className="font-['Outfit'] text-[#3d2e28] text-[15px] sm:text-base leading-[1.85] sm:leading-[1.9] mb-5">
+          <p className="font-[family-name:var(--font-outfit)] text-[#3d2e28] text-[15px] sm:text-base leading-[1.85] sm:leading-[1.9] mb-5">
             I&apos;m a software engineer who lives where hardware meets the cloud. Started with
             industrial-electronics foundations at SMK Negeri Jawa Tengah (2023) — panel schematics and
             PCB design — which gave me the structural logic for complex systems. Now in R&amp;D, I architect
             middleware for 10+ industrial protocols and the dashboards that make their data useful.
           </p>
-          <p className="font-['Outfit'] text-[#7a6e64] text-sm leading-[1.85]">
+          <p className="font-[family-name:var(--font-outfit)] text-[#7a6e64] text-sm leading-[1.85]">
             The thing I actually care about: systems that work outside the lab. In the factory. On the
             data-center floor. I&apos;ve wired the panels and shipped the dashboards, so I know what that
             means for design decisions.
@@ -378,187 +381,99 @@ function About() {
 
 // ─── Projects ─────────────────────────────────────────────────────────────────
 
-interface Proj {
-  n: string;
-  title: string;
-  layer: string;
-  blurb: string;
-  tech: string[];
-  stat: string;
-  demo?: string;
-  repo?: string;
+function FeaturedCard({ p }: { p: Proj }) {
+  const color = layerColor[p.layer] ?? '#bf5030';
+  return (
+    <Link
+      href={`/work/${p.slug}`}
+      className="group flex flex-col border border-[#1a1410]/10 bg-[#f0ede6] p-5 sm:p-6 transition-colors hover:border-[#bf5030]/40 min-w-0"
+      style={{ borderTopColor: color, borderTopWidth: 2 }}
+    >
+      <div className="flex items-center justify-between gap-3 mb-3">
+        <span className="font-mono text-[10px] text-[#7a6e64]/50">{p.n}</span>
+        <StatusBadge status={p.status} />
+      </div>
+      <Scramble className="font-[family-name:var(--font-rajdhani)] font-bold text-xl sm:text-2xl leading-tight text-[#1a1410] group-hover:text-[#bf5030] transition-colors">
+        {p.title}
+      </Scramble>
+      <span
+        className="mt-2 self-start font-mono text-[10px] tracking-widest uppercase px-1.5 py-0.5 border"
+        style={{ color, borderColor: `${color}40`, background: `${color}10` }}
+      >
+        {p.layer}
+      </span>
+      <p className="mt-4 font-[family-name:var(--font-outfit)] text-[#3d2e28] text-[13px] sm:text-sm leading-[1.7] font-medium">
+        {p.impact}
+      </p>
+      <div className="mt-5 pt-4 border-t border-[#1a1410]/8 flex items-center justify-between gap-3">
+        <span className="font-mono text-[10px] tracking-widest uppercase text-[#7a6e64] group-hover:text-[#bf5030] transition-colors inline-flex items-center gap-1">
+          view project
+          <ArrowUpRight size={11} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+        </span>
+        {p.demo && <span className="font-mono text-[9px] tracking-widest uppercase text-[#bf5030]">live demo</span>}
+      </div>
+    </Link>
+  );
 }
 
-const projects: Proj[] = [
-  {
-    n: '001',
-    title: 'SMARTRACK — DCIM Platform',
-    layer: 'Fullstack',
-    blurb:
-      'Full-stack data-center management platform. Real-time MQTT/WebSocket monitoring, multi-protocol IoT (Modbus, SNMP), AI analytics, drag-and-drop automation, RBAC + AES-256, PUE/carbon tracking.',
-    tech: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'MQTT', 'Docker'],
-    stat: 'live demo',
-    demo: 'https://smartrack-software.vercel.app/',
-    repo: 'https://github.com/deenqtt/smartrack-software',
-  },
-  {
-    n: '002',
-    title: 'IoT BOM List v2',
-    layer: 'Fullstack + Infra',
-    blurb:
-      'Enterprise BOM and inventory platform for IoT hardware teams. Models components, PCB assemblies, sellable product sets, and deployment projects with supplier pricing, Excel import/export, audit logs, backup scheduler, and Docker/nginx deployment.',
-    tech: ['Next.js', 'TypeScript', 'Hono', 'Prisma', 'PostgreSQL', 'Docker', 'nginx'],
-    stat: 'multi-service',
-    repo: 'https://github.com/deenqtt/IOTBomlist-v2',
-  },
-  {
-    n: '003',
-    title: 'Industrial Telemetry & Protocol Bridge',
-    layer: 'Firmware + Middleware',
-    blurb:
-      'Real-time poller for industrial devices — Modbus, SNMP — publishing to an MQTT broker with bidirectional reverse flow. Runs on Raspberry Pi + ESP32 nodes.',
-    tech: ['Python', 'MQTT', 'Modbus', 'SNMP', 'Raspberry Pi', 'ESP32'],
-    stat: 'bidirectional',
-    repo: 'https://github.com/deenqtt',
-  },
-  {
-    n: '004',
-    title: 'AGV Simulation & Web Control',
-    layer: 'Robotics + Fullstack',
-    blurb:
-      'ROS2 Humble + Gazebo autonomous guided vehicle with a Vue 3 control UI. Nav2 navigation, SLAM mapping, auto-docking, keepout-zone costmaps, live camera feed.',
-    tech: ['ROS2', 'Gazebo', 'Nav2', 'SLAM', 'Vue 3', 'Docker'],
-    stat: 'Nav2 + SLAM',
-    repo: 'https://github.com/deenqtt',
-  },
-  {
-    n: '005',
-    title: 'Production Machine Monitor (AI Vision)',
-    layer: 'Fullstack + AI',
-    blurb:
-      'Real-deployed monitor for CNC/laser machines. A silent C# screenshot agent feeds a Flask server running Qwen2.5VL locally, generating automated daily activity reports.',
-    tech: ['Python', 'Flask', 'C#', 'Ollama', 'Qwen2.5VL'],
-    stat: '3 machines live',
-    repo: 'https://github.com/deenqtt',
-  },
-  {
-    n: '006',
-    title: 'Bubble Arena',
-    layer: 'Fullstack',
-    blurb:
-      'Browser game controlled entirely by hand gestures via MediaPipe. Real-time P2P multiplayer over WebRTC, face-detection lobby, custom canvas engine.',
-    tech: ['React', 'TypeScript', 'MediaPipe', 'WebRTC', 'PeerJS'],
-    stat: 'live demo',
-    demo: 'https://bubble-pop-web-new.vercel.app/',
-    repo: 'https://github.com/deenqtt',
-  },
-  {
-    n: '007',
-    title: 'AI Meeting Assistant (STT/TTS)',
-    layer: 'Middleware + AI',
-    blurb:
-      'Real-time speech-to-text, automated meeting summaries, and voice-controlled smart-room automation via custom wake-word detection.',
-    tech: ['Python', 'STT', 'NLP', 'MQTT', 'IoT'],
-    stat: 'real-time STT',
-    repo: 'https://github.com/deenqtt',
-  },
-];
-
-const layerColor: Record<string, string> = {
-  Fullstack: '#bf5030',
-  'Fullstack + Infra': '#2f5f6f',
-  'Firmware + Middleware': '#3d6b5a',
-  'Robotics + Fullstack': '#8b6914',
-  'Fullstack + AI': '#5a3d7a',
-  'Middleware + AI': '#3d2e28',
-};
-
 function ProjectRow({ p }: { p: Proj }) {
-  const [open, setOpen] = useState(false);
   const color = layerColor[p.layer] ?? '#bf5030';
-
   return (
-    <div className="border-b border-[#1a1410]/8 cursor-pointer group" onClick={() => setOpen(!open)}>
-      <div className="grid grid-cols-[2rem_1fr] gap-x-3 gap-y-3 py-5 px-1 sm:px-2 hover:bg-[#1a1410]/[0.02] transition-colors sm:flex sm:items-start sm:gap-5">
+    <Link href={`/work/${p.slug}`} className="block border-b border-[#1a1410]/8 group">
+      <div className="grid grid-cols-[2rem_1fr] gap-x-3 gap-y-2 py-5 px-1 sm:px-2 hover:bg-[#1a1410]/[0.02] transition-colors sm:flex sm:items-start sm:gap-5">
         <span className="font-mono text-[10px] text-[#7a6e64]/50 pt-1 sm:pt-0.5 w-7 shrink-0">{p.n}</span>
         <div className="flex-1 min-w-0">
           <div className="flex items-start sm:items-baseline gap-2 sm:gap-3 flex-wrap min-w-0">
-            <Scramble className="font-['Rajdhani'] font-bold text-lg sm:text-xl leading-tight text-[#1a1410] group-hover:text-[#bf5030] transition-colors">
+            <span className="font-[family-name:var(--font-rajdhani)] font-bold text-lg sm:text-xl leading-tight text-[#1a1410] group-hover:text-[#bf5030] transition-colors">
               {p.title}
-            </Scramble>
+            </span>
             <span
               className="font-mono text-[10px] tracking-widest uppercase px-1.5 py-0.5 border break-words"
               style={{ color, borderColor: `${color}40`, background: `${color}10` }}
             >
               {p.layer}
             </span>
-            <span className="font-mono text-[10px] sm:hidden pt-0.5" style={{ color }}>
-              {p.stat}
-            </span>
           </div>
-          {open && (
-            <div className="mt-4 mb-2">
-              <p className="font-['Outfit'] text-[#7a6e64] text-sm leading-[1.8] max-w-xl mb-4">{p.blurb}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {p.tech.map((t) => (
-                  <span
-                    key={t}
-                    className="font-mono text-[10px] text-[#7a6e64] px-2 py-0.5 bg-[#1a1410]/[0.05] border border-[#1a1410]/10"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-3" onClick={(e) => e.stopPropagation()}>
-                {p.demo && (
-                  <a
-                    href={p.demo}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group/link flex items-center gap-1 font-mono text-[10px] tracking-widest uppercase text-[#bf5030] hover:text-[#1a1410] transition-colors"
-                  >
-                    live demo
-                    <ArrowUpRight size={10} className="group-hover/link:translate-x-0.5 transition-transform" />
-                  </a>
-                )}
-                {p.repo && (
-                  <a
-                    href={p.repo}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group/link flex items-center gap-1 font-mono text-[10px] tracking-widest uppercase text-[#7a6e64] hover:text-[#1a1410] transition-colors"
-                  >
-                    source
-                    <ArrowUpRight size={10} className="group-hover/link:translate-x-0.5 transition-transform" />
-                  </a>
-                )}
-              </div>
-            </div>
-          )}
+          <p className="mt-2 font-[family-name:var(--font-outfit)] text-[#7a6e64] text-[13px] leading-[1.7] max-w-2xl">
+            {p.impact}
+          </p>
         </div>
-        <span className="hidden sm:block font-mono text-[11px] shrink-0 pt-0.5" style={{ color }}>
-          {p.stat}
-        </span>
-        <span className="font-mono text-[10px] text-[#7a6e64]/40 pt-0.5 shrink-0 hidden sm:block">
-          {open ? '↑' : '↓'}
-        </span>
+        <div className="hidden sm:flex flex-col items-end gap-1 shrink-0 pt-0.5">
+          <StatusBadge status={p.status} />
+          <span className="font-mono text-[10px] text-[#7a6e64]/40 group-hover:text-[#bf5030] transition-colors">→</span>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
 function Projects() {
+  const featured = projects.filter((p) => p.featured);
+  const rest = projects.filter((p) => !p.featured);
   return (
     <section id="projects" className="py-16 sm:py-28 px-4 sm:px-10 max-w-5xl mx-auto border-t border-[#1a1410]/8">
       <SectionLabel index="02" label="selected work" />
-      <div className="border-t border-[#1a1410]/8">
-        {projects.map((p) => (
-          <ProjectRow key={p.n} p={p} />
+      <div className="grid md:grid-cols-2 gap-4 mb-12">
+        {featured.map((p) => (
+          <FeaturedCard key={p.n} p={p} />
         ))}
       </div>
+      {rest.length > 0 && (
+        <>
+          <div className="font-mono text-[10px] text-[#7a6e64]/60 tracking-[0.25em] uppercase mb-2">
+            more work
+          </div>
+          <div className="border-t border-[#1a1410]/8">
+            {rest.map((p) => (
+              <ProjectRow key={p.n} p={p} />
+            ))}
+          </div>
+        </>
+      )}
     </section>
   );
 }
+
 
 // ─── Stack ────────────────────────────────────────────────────────────────────
 
@@ -606,21 +521,21 @@ const exps = [
     period: '2023 — now',
     role: 'R&D Engineer',
     co: 'PT GSPE',
-    note: 'Bridging bare-metal firmware and cloud telemetry. Middleware for 10+ industrial protocols, real-time MQTT pipelines, and full-stack control centers (SMARTRACK DCIM).',
-    tags: ['Python', 'MQTT', 'Modbus', 'Next.js', 'Docker'],
+    note: 'Built a protocol gateway that serves 11 industrial protocols from one source, shipped a fleet OTA control plane with staged rollout + auto-rollback, and designed access-control hardware end to end (PCB → firmware → software). Also delivered the SMARTRACK DCIM control center.',
+    tags: ['Python', 'C/C++', 'MQTT', 'Modbus', 'Next.js', 'Docker'],
   },
   {
-    period: '2023 — now',
+    period: '2024 — now',
     role: 'Freelance / Independent',
     co: 'Self',
-    note: 'IoT and web projects for freelance clients — dashboards, protocol bridges, mobile control apps. First freelance client 2024.',
-    tags: ['IoT', 'Next.js', 'Flutter', 'Supabase'],
+    note: 'Deployed IoT + web systems for clients — dashboards, protocol bridges, and an on-prem AI vision monitor running across production machines. First client 2024.',
+    tags: ['IoT', 'Next.js', 'Python', 'AI'],
   },
   {
     period: '2020 — 2023',
     role: 'Teknik Elektronika Industri (SMK)',
     co: 'SMK Negeri Jawa Tengah',
-    note: 'Industrial electronics — panel schematics, PCB design, and microcontrollers. The structural logic that underpins how I approach complex hardware-software systems today.',
+    note: 'Industrial electronics — panel schematics, PCB design, and microcontrollers. The structural logic behind how I approach hardware-software systems today.',
     tags: ['PCB Design', 'Panel Wiring', 'C++', 'Electronics'],
   },
 ];
@@ -635,10 +550,10 @@ function Experience() {
             <div className="font-mono text-[11px] text-[#7a6e64] tracking-wider pt-0.5">{e.period}</div>
             <div>
               <div className="flex items-baseline gap-3 flex-wrap mb-1">
-                <span className="font-['Rajdhani'] font-bold text-lg text-[#1a1410]">{e.role}</span>
+                <span className="font-[family-name:var(--font-rajdhani)] font-bold text-lg text-[#1a1410]">{e.role}</span>
                 <span className="font-mono text-[11px] text-[#bf5030]/70">@ {e.co}</span>
               </div>
-              <p className="font-['Outfit'] text-[#7a6e64] text-sm leading-[1.8] mb-3 max-w-xl">{e.note}</p>
+              <p className="font-[family-name:var(--font-outfit)] text-[#7a6e64] text-sm leading-[1.8] mb-3 max-w-xl">{e.note}</p>
               <div className="flex flex-wrap gap-2">
                 {e.tags.map((t) => (
                   <span
@@ -659,6 +574,134 @@ function Experience() {
 
 // ─── Contact ──────────────────────────────────────────────────────────────────
 
+type FormState = 'idle' | 'sending' | 'sent' | 'error';
+
+const inputCls =
+  'w-full bg-[#f0ede6] border border-[#1a1410]/12 px-3 py-2.5 font-mono text-[12px] text-[#1a1410] placeholder:text-[#7a6e64]/50 focus:border-[#bf5030] focus:outline-none transition-colors';
+
+function ContactForm() {
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [state, setState] = useState<FormState>('idle');
+  const [error, setError] = useState('');
+
+  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setState('sending');
+    setError('');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setError(data.error ?? 'Failed to send message.');
+        setState('error');
+        return;
+      }
+      setState('sent');
+      setForm({ name: '', email: '', subject: '', message: '' });
+    } catch {
+      setError('Network error. Try again.');
+      setState('error');
+    }
+  }
+
+  if (state === 'sent') {
+    return (
+      <div className="bg-[#e8e4db] border border-[#1a1410]/8 p-6 flex flex-col items-start gap-3 min-w-0">
+        <div className="flex items-center gap-2 text-[#3d6b5a]">
+          <Check size={16} />
+          <span className="font-mono text-[12px] tracking-wider uppercase">message sent</span>
+        </div>
+        <p className="font-mono text-[11px] text-[#7a6e64] leading-relaxed">
+          Thanks — landed in my inbox. I&apos;ll reply to {form.email || 'your email'} soon.
+        </p>
+        <button
+          type="button"
+          onClick={() => setState('idle')}
+          className="font-mono text-[10px] tracking-widest uppercase text-[#bf5030] hover:text-[#1a1410] transition-colors"
+        >
+          send another
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <form
+      onSubmit={onSubmit}
+      className="bg-[#e8e4db] border border-[#1a1410]/8 p-4 sm:p-6 space-y-4 min-w-0"
+    >
+      <div className="font-mono text-[10px] text-[#bf5030]/70 tracking-widest uppercase flex items-center gap-2">
+        <Terminal size={10} /> send_message
+      </div>
+      <div className="grid sm:grid-cols-2 gap-4">
+        <input
+          aria-label="Your name"
+          className={inputCls}
+          placeholder="name"
+          value={form.name}
+          onChange={set('name')}
+          maxLength={100}
+          required
+        />
+        <input
+          aria-label="Your email"
+          type="email"
+          className={inputCls}
+          placeholder="email"
+          value={form.email}
+          onChange={set('email')}
+          maxLength={200}
+          required
+        />
+      </div>
+      <input
+        aria-label="Subject"
+        className={inputCls}
+        placeholder="subject"
+        value={form.subject}
+        onChange={set('subject')}
+        maxLength={200}
+        required
+      />
+      <textarea
+        aria-label="Message"
+        className={`${inputCls} resize-none`}
+        placeholder="message"
+        rows={5}
+        value={form.message}
+        onChange={set('message')}
+        maxLength={2000}
+        required
+      />
+      {state === 'error' && (
+        <p className="font-mono text-[11px] text-[#bf5030] break-words">{error}</p>
+      )}
+      <button
+        type="submit"
+        disabled={state === 'sending'}
+        className="group flex items-center justify-center gap-2 w-full font-mono text-[11px] tracking-widest uppercase text-[#1a1410] border border-[#bf5030]/40 bg-[#bf5030]/10 px-5 py-3 hover:border-[#bf5030] hover:text-[#bf5030] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {state === 'sending' ? (
+          <>
+            <Loader2 size={12} className="animate-spin" /> sending
+          </>
+        ) : (
+          <>
+            send message <Send size={12} className="group-hover:translate-x-0.5 transition-transform" />
+          </>
+        )}
+      </button>
+    </form>
+  );
+}
+
 function Contact() {
   return (
     <section id="contact" className="py-16 sm:py-28 px-4 sm:px-10 max-w-5xl mx-auto border-t border-[#1a1410]/8">
@@ -666,17 +709,36 @@ function Contact() {
       <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
         <div className="min-w-0">
           <h2
-            className="font-['Rajdhani'] font-bold text-[clamp(2.35rem,12vw,4.5rem)] sm:text-[clamp(2.5rem,7vw,4.5rem)] text-[#1a1410] leading-tight mb-6"
+            className="font-[family-name:var(--font-rajdhani)] font-bold text-[clamp(2.35rem,12vw,4.5rem)] sm:text-[clamp(2.5rem,7vw,4.5rem)] text-[#1a1410] leading-tight mb-6"
             style={{ letterSpacing: '-0.02em' }}
           >
             GOT A REAL
             <br />
             <span className="text-[#bf5030]">PROBLEM?</span>
           </h2>
-          <p className="font-['Outfit'] text-[#7a6e64] text-sm leading-[1.85] max-w-sm mb-8">
+          <p className="font-[family-name:var(--font-outfit)] text-[#7a6e64] text-sm leading-[1.85] max-w-sm mb-6">
             Need someone who can walk from the hardware abstraction layer to the user dashboard?
             Industrial protocols, telemetry middleware, control centers — that&apos;s home.
           </p>
+
+          <div className="mb-8 border border-[#1a1410]/10 bg-[#1a1410]/[0.03] p-4 max-w-sm">
+            <div className="font-mono text-[9px] tracking-[0.22em] uppercase text-[#bf5030]/70 mb-3">
+              what i build for you
+            </div>
+            <ul className="space-y-2">
+              {[
+                'Industrial protocol middleware & gateways (Modbus, MQTT, BACnet, OPC-UA…)',
+                'IoT telemetry pipelines & realtime control dashboards (Next.js)',
+                'Firmware + hardware + fullstack — the whole chain, one hand',
+              ].map((s) => (
+                <li key={s} className="font-mono text-[11px] text-[#3d2e28]/80 leading-relaxed flex items-start gap-2">
+                  <span className="text-[#bf5030]/40 shrink-0">—</span>
+                  <span>{s}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <div className="space-y-3">
             {[
               { icon: <Mail size={13} />, label: 'dedenh842@gmail.com', href: 'mailto:dedenh842@gmail.com', ext: false },
@@ -703,28 +765,7 @@ function Contact() {
           </div>
         </div>
 
-        <div className="font-mono text-[11px] text-[#7a6e64] leading-[1.9] bg-[#e8e4db] border border-[#1a1410]/8 p-4 sm:p-6 min-w-0">
-          <div className="mb-3 text-[#bf5030]/70">
-            <Typed text="$ cat availability.txt" delay={400} />
-          </div>
-          {[
-            '> open to remote engineering roles',
-            '> open to freelance (IoT / web)',
-            '> based in Semarang, Indonesia',
-            '> UTC+7, flexible hours',
-            '',
-            '> specialties:',
-            '  - industrial protocol middleware',
-            '  - IoT telemetry pipelines',
-            '  - firmware + fullstack combo',
-            '  - Next.js control centers',
-          ].map((line, i) => (
-            <div key={i} className={`${line.startsWith('>') ? 'text-[#3d2e28]' : 'text-[#7a6e64]'} break-words`}>
-              {line || <br />}
-            </div>
-          ))}
-          <div className="mt-2 text-[#bf5030]/60 animate-pulse">▋</div>
-        </div>
+        <ContactForm />
       </div>
     </section>
   );
@@ -751,7 +792,7 @@ function Footer() {
 
 export default function Home() {
   return (
-    <div id="top" className="min-h-screen bg-[#f0ede6] text-[#1a1410]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+    <div id="top" className="min-h-screen bg-[#f0ede6] text-[#1a1410]" style={{ fontFamily: 'var(--font-outfit), sans-serif' }}>
       <Noise />
       <CursorSpot />
       <Nav />
