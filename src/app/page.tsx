@@ -518,17 +518,17 @@ function Stack() {
 // NOTE: verify dates/titles against your real record before publishing.
 const exps = [
   {
-    period: '2023 — now',
+    period: '2024 — now',
     role: 'R&D Engineer',
     co: 'PT GSPE',
     note: 'Built a protocol gateway that serves 11 industrial protocols from one source, shipped a fleet OTA control plane with staged rollout + auto-rollback, and designed access-control hardware end to end (PCB → firmware → software). Also delivered the SMARTRACK DCIM control center.',
     tags: ['Python', 'C/C++', 'MQTT', 'Modbus', 'Next.js', 'Docker'],
   },
   {
-    period: '2024 — now',
+    period: '2025 — now',
     role: 'Freelance / Independent',
     co: 'Self',
-    note: 'Deployed IoT + web systems for clients — dashboards, protocol bridges, and an on-prem AI vision monitor running across production machines. First client 2024.',
+    note: 'Deployed IoT + web systems for clients — dashboards, protocol bridges, and an on-prem AI vision monitor running across production machines. First client 2025.',
     tags: ['IoT', 'Next.js', 'Python', 'AI'],
   },
   {

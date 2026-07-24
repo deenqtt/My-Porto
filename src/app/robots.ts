@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://my-porto-coral.vercel.app'; // Replace with actual domain if changed
+  const baseUrl = 'https://my-porto-coral.vercel.app';
 
   return {
     rules: {

@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { projects } from '@/data/projects';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://my-porto-coral.vercel.app'; // Replace with actual domain if changed
+  const baseUrl = 'https://my-porto-coral.vercel.app';
 
   const now = new Date();
 
