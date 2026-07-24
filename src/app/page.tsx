@@ -332,7 +332,7 @@ function Hero() {
 // ─── About ────────────────────────────────────────────────────────────────────
 
 const quickFacts: [string, string][] = [
-  ['role', 'R&D @ PT GSPE'],
+  ['role', 'IoT Dev @ PT GSPE'],
   ['based', 'Jakarta Barat, ID · UTC+7'],
   ['very into', 'making hw talk to sw'],
   ['protocols', 'Modbus, BACnet, SNMP, OPC-UA'],
@@ -350,7 +350,7 @@ function About() {
           <p className="font-[family-name:var(--font-outfit)] text-[#3d2e28] text-[15px] sm:text-base leading-[1.85] sm:leading-[1.9] mb-5">
             I&apos;m a software engineer who lives where hardware meets the cloud. Started with
             industrial-electronics foundations at SMK Negeri Jawa Tengah (2023) — panel schematics and
-            PCB design — which gave me the structural logic for complex systems. Now in R&amp;D, I architect
+            PCB design — which gave me the structural logic for complex systems. Now I build
             middleware for 10+ industrial protocols and the dashboards that make their data useful.
           </p>
           <p className="font-[family-name:var(--font-outfit)] text-[#7a6e64] text-sm leading-[1.85]">
@@ -519,7 +519,7 @@ function Stack() {
 const exps = [
   {
     period: '2024 — now',
-    role: 'R&D Engineer',
+    role: 'IoT Developer',
     co: 'PT GSPE',
     note: 'Built a protocol gateway serving 11 industrial protocols from one source, shipped a fleet OTA control plane with staged rollout + auto-rollback, and built an ESP32 access controller (firmware → software) driving locks over RS485/Modbus. Delivered the SMARTRACK DCIM control center, plus AI/ML systems for production monitoring and predictive maintenance.',
     tags: ['Python', 'C/C++', 'MQTT', 'Modbus', 'Next.js', 'AI/ML'],
